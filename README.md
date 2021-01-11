@@ -37,6 +37,7 @@ ability to get the deformation from bones and fcurve animations
 
 With your support i will be able to ad all this to the addon.
 
-
+If you whant to support this project you can donate via gumroad:
+https://gumroad.com/l/Sq_Bk
 
 Enjoy
