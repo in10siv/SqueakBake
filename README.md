@@ -4,6 +4,8 @@ This is an addon for blender that helps you to automate the squeaks and screeche
 
   Instead of adding the tracks manually and trying to match the movement to the sound use this addon. It duplicates the NLA soundtrack for every change in rotation direction or after a brake in the euler rotation for the specified axis.
 
+Basic Tutorial here:
+https://youtu.be/puugbwrAoEw
 
 The interface is simple
           
