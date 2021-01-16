@@ -1,4 +1,4 @@
-# SqueakBake
+# SqueakBake V2
 
 This is an addon for blender that helps you to automate the squeaks and screeches of rotating objects to get 3d soundFx.
 
