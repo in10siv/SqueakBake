@@ -100,7 +100,7 @@ class SQUEAKBAKE_OT_BakeSpeaker(bpy.types.Operator):
         st = context.scene.frame_start
         en = context.scene.frame_end
         Squeaktool = context.scene.Squeak_tool
-        
+        currentframe = context.scene.frame_current
         
         
 
@@ -168,16 +168,11 @@ class SQUEAKBAKE_OT_BakeSpeaker(bpy.types.Operator):
                   
                     
                       
-            
-                
-                
 
-            
-           
-        #______________________________________________________________________   
             
           
         bpy.context.area.ui_type = uitypesqueak 
+        context.scene.frame_set(currentframe)
         print("done")
         print("SqueakBake has Finished: %.4f sec" % (time.time() - time_start))
        
@@ -251,39 +246,8 @@ class SQUEAKBAKE_PT_SPEAKER(bpy.types.Panel):
         
         row = layout.row()
         row.scale_y = 3.0
-        row.operator("object.squeak_bake")
+        row.operator("squeakbake.squeak_bake")
         
-#________________registration____________________       
-
-
-
-
-
-
-
-
-
- 
-        
-        
-def sqeak_sequence (context):
-        
-       
-    
-    
-
-    bpy.ops.sequencer.paste()
-    
-
-
-
-
-
-
-
-
-
-
 
 
 class SQUEAKBAKE_OT_Sequencer(bpy.types.Operator):
@@ -312,7 +276,7 @@ class SQUEAKBAKE_OT_Sequencer(bpy.types.Operator):
                 st = context.scene.frame_start
                 en = context.scene.frame_end
                 Squeaktool = context.scene.Squeak_tool
-                
+                currentframe = context.scene.frame_current
                 
                 #____________________properties Set______________
                 
@@ -354,7 +318,7 @@ class SQUEAKBAKE_OT_Sequencer(bpy.types.Operator):
                 SequenceSq.frame_start = st
                 bpy.ops.sequencer.copy()
                 SequenceSq.frame_start = en
-                #bpy.ops.sequencer.delete()
+                bpy.ops.sequencer.delete()
 
             
                 #____________________the loop______________
@@ -368,7 +332,9 @@ class SQUEAKBAKE_OT_Sequencer(bpy.types.Operator):
                         
                     if def_dif == 0 :
                         if Squeaktool.zero_bool and sta: 
+                            
                             bpy.ops.sequencer.paste()
+                            #bpy.ops.transform.seq_slide(value=(0, 1))
                             bleep = True
                         sta = False
                     else: sta = True
@@ -389,13 +355,13 @@ class SQUEAKBAKE_OT_Sequencer(bpy.types.Operator):
                         creste = False     
                     else: creste = True
                           
-                context.scene.frame_set(st)           
+                context.scene.frame_set(currentframe)           
                 if bleep == False :
                                   
                     
                     bpy.ops.sequencer.paste()
                     
-                    
+                bleep == False   
                 self.report({'INFO'}, "It Squeaks now!")
                 print("done")
                 print("SqueakBake has Finished: %.4f sec" % (time.time() - time_start))
@@ -463,7 +429,7 @@ class SqueakProperties(bpy.types.PropertyGroup):
 class SQUEAKBAKE_PT_SEQUENCER(bpy.types.Panel):
     """Creates a Panel in the scene context of the properties editor"""
     bl_label = "Squeak Bake"
-    bl_idname = "SQUEAKBAKE_PT_SEQUENCER"
+    bl_idname = "SQUEAKBAKE_PT_sequencer"
     bl_space_type = 'SEQUENCE_EDITOR'
     bl_region_type = 'UI'
     #bl_context = 'sequences'
@@ -472,7 +438,7 @@ class SQUEAKBAKE_PT_SEQUENCER(bpy.types.Panel):
     
     @classmethod
     def poll(cls, context):
-        return  context.sequences is not None
+        return  context.sequences is not None 
         
     
     def draw(self, context):
@@ -519,7 +485,7 @@ class SQUEAKBAKE_PT_SEQUENCER(bpy.types.Panel):
         
         row = layout.row()
         row.scale_y = 3.0
-        row.operator("object.squeak_seqbake")
+        row.operator("squeakbake.squeak_seqbake")
         
 #________________registration____________________       
 
