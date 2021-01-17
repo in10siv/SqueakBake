@@ -351,7 +351,7 @@ class SQUEAKBAKE_OT_Sequencer(bpy.types.Operator):
                 
                 context.scene.frame_set(st)
                 SequenceSq = context.scene.sequence_editor.sequences.data.active_strip
-                SequenceSq.frame_start = 1
+                SequenceSq.frame_start = st
                 bpy.ops.sequencer.copy()
                 SequenceSq.frame_start = en
                 #bpy.ops.sequencer.delete()
